@@ -15,6 +15,8 @@ class Cart extends Model
         'idUser',
         'amount',
        'genaral',
+       'size',
+       'color',
         'created_at',
         'updated_at'
     ];

@@ -25,6 +25,8 @@
                             <tr>
                                 <th>Sản Phẩm </th>
                                 <th>Gía</th>
+                                <th>Color</th>
+                                <th>Size</th>
                                 <th>Số Lượng</th>
                                 <th>Tổng Tiền</th>
                                 <th></th>
@@ -54,9 +56,11 @@
                                     </div>
                                 </td>
                                 <td class="cart__price">{{ number_format($pro->price)}} VND</td>
+                                <td class="cart__price">{{ $item->color}} </td>
+                                <td class="cart__price">{{ $item->size}}</td>
                                 <td class="cart__quantity">
                                     <div class="pro-qty">
-                                        <a href="{{ route('home.themcart', [Auth::user()->id,$pro->id]) }}">+</a>
+                                        <a href="{{ route('home.themcart1', [Auth::user()->id,$pro->id,$item->size,$item->color]) }}">+</a>
                                         <input type="text" value="{{$item->amount}}">
                                         <a href="{{ route('home.trucart', [Auth::user()->id,$pro->id]) }}">-</a>
                                     </div>

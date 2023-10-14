@@ -75,9 +75,10 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="chart.html">
-                                <i class="fas fa-chart-bar"></i>Charts</a>
-                        </li>
+                                <a href="{{ route('admin.home') }}">
+                                    <i class="fas fa-chart-bar"></i>Thống Kê</a>
+
+                            <li>
                         <li>
                             <a href="table.html">
                                 <i class="fas fa-table"></i>Tables</a>

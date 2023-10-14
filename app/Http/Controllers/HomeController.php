@@ -127,10 +127,45 @@ class HomeController extends Controller
             return redirect()->route('home')->with('error', 'error add card ');
         }
     }
-    public function themcart($idUser, $idProduct)
+    public function themcart($idUser, $idProduct, Request $request)
     {
         // dd(123);
-        $cart = Cart::where('idProduct', $idProduct)->where('genaral', 1)->first();
+        $cart = Cart::where('idProduct', $idProduct)
+        ->where('genaral', 1)
+        ->where('size', $request->input('size'))
+        ->where('color', $request->input('color'))
+        ->first();
+
+        // dd($cart);
+        if (!empty($cart)) {
+
+            $cart->amount = $cart->amount + 1;
+            $cart->save();
+            return redirect()->route('home')->with('success', 'Successfully add card ');
+        } else {
+            if (
+                Cart::create([
+                    'idUser' => $idUser,
+                    'idProduct' => $idProduct,
+                    'genaral' => 1,
+                    'amount' => 1,
+                    'size' => $request->input('size'),
+                    'color' => $request->input('color'),
+                ])
+            ) {
+                return redirect()->route('home')->with('success', 'Successfully add card ');
+            } else {
+                return redirect()->route('home')->with('error', 'error add card ');
+            }
+        }
+    }
+    public function themcart1($idUser, $idProduct,$size, $color,Request $request)
+    {
+        // dd(123);
+        $cart = Cart::where('idProduct', $idProduct)->where('size', $size)
+        ->where('color', $color)
+        ->where('genaral', 1)
+        ->first();
         // dd($cart);
         if (!empty($cart)) {
 

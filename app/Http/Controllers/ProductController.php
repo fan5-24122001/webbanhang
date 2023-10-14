@@ -45,6 +45,9 @@ class ProductController extends Controller
         $product->amount = 0;
         $product->description = $request->description1;
         $product->price = $request->price;
+        $product->size = implode(',', $request->input('size', [])); // Assuming 'size' is an array in your form
+        $product->color = implode(',', $request->input('color', [])); // Assuming 'color' is an array in your form
+
         if (!empty($arrayImgae)) {
             $product->image = substr_replace($arrayImgae, "", -1);
         }
@@ -68,6 +71,9 @@ class ProductController extends Controller
         $product->description = $request->description1;
         $product->price = $request->price;
         $product->showsp = $request->showsp;
+        // Handle selected sizes and colors as comma-separated strings
+        $product->size = implode(',', $request->input('size', [])); // Assuming 'size' is an array in your form
+        $product->color = implode(',', $request->input('color', [])); // Assuming 'color' is an array in your form
         if ($request->has('image')) {
             if (!empty($request->image)) {
                 $countImageOld = count(explode('|', $product->image));

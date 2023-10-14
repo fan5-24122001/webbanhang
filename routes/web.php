@@ -127,7 +127,8 @@ Route::post('remove', [CartController::class, 'removeCart'])->name('cart.remove'
 Route::post('clear', [CartController::class, 'clearAllCart'])->name('cart.clear');
 Route::get('/{idUser}/cart',  [App\Http\Controllers\HomeController::class, 'cartUser'])->name('home.cartUser');
 Route::get('/trucart/{idUser}/{idProduct}', [App\Http\Controllers\HomeController::class, 'trucart'])->name('home.trucart');
-Route::get('/themcart/{idUser}/{idProduct}', [App\Http\Controllers\HomeController::class, 'themcart'])->name('home.themcart');
+Route::post('/themcart/{idUser}/{idProduct}', [App\Http\Controllers\HomeController::class, 'themcart'])->name('home.themcart');
+Route::get('/themcart1/{idUser}/{idProduct}/{size}/{color}', [App\Http\Controllers\HomeController::class, 'themcart1'])->name('home.themcart1');
 Route::DELETE('/deleteproductuser/{id}',[App\Http\Controllers\HomeController::class,'delete'])->name('home.deleteProduct');
 Route::DELETE('/deleteProduct/{id}',[App\Http\Controllers\HomeController::class,'deleteProduct'])->name('deleteProduct');
 Route::get('/thanhtoan',[App\Http\Controllers\HomeController::class, 'pay'])->name('home.pay');
