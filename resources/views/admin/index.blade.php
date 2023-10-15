@@ -43,7 +43,7 @@
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
                         <a class="logo" href="index.html">
-                            <!-- <img src="users/logo.png" alt="CoolAdmin" /> -->
+                            <img src="users/logo.png" alt="CoolAdmin" />
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
                             <span class="hamburger-box">
@@ -56,59 +56,83 @@
             <nav class="navbar-mobile">
                 <div class="container-fluid">
                     <ul class="navbar-mobile__list list-unstyled">
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                <li>
-                                    <a href="index.html">Dashboard 1</a>
-                                </li>
-                                <li>
-                                    <a href="index2.html">Dashboard 2</a>
-                                </li>
-                                <li>
-                                    <a href="index3.html">Dashboard 3</a>
-                                </li>
-                                <li>
-                                    <a href="index4.html">Dashboard 4</a>
-                                </li>
-                            </ul>
-                        </li>
                         <li>
-                                <a href="{{ route('admin.home') }}">
-                                    <i class="fas fa-chart-bar"></i>Thống Kê</a>
+                            <a href="{{ route('admin.home') }}">
+                                <i class="fas fa-chart-bar"></i>Thống Kê</a>
 
-                            <li>
                         <li>
-                            <a href="table.html">
-                                <i class="fas fa-table"></i>Tables</a>
+                        <li>
+                            <a href="{{ route('Product.list') }}">
+                                <i class="fas fa-chart-bar"></i>Sản Phẩm</a>
+
+                        <li>
+                        <li>
+                            <a href="{{ route('Category.list') }}">
+                                <i class="fas fa-map-marker-alt"></i>Danh Mục</a>
                         </li>
                         <li>
-                            <a href="form.html">
-                                <i class="far fa-check-square"></i>Forms</a>
-                        </li>
+                            <a href="{{ route('User.listNV') }}">
+                                <i class="fas fa-chart-bar"></i>QL TK nhân viên</a>
+
                         <li>
-                            <a href="calendar.html">
-                                <i class="fas fa-calendar-alt"></i>Calendar</a>
-                        </li>
+                        <li>
+                            <a href="{{ route('NhapXuatKho.list') }}">
+                                <i class="fas fa-chart-bar"></i>Quản lý kho</a>
+
+                        <li>
+
                         <li>
                             <a href="map.html">
                                 <i class="fas fa-map-marker-alt"></i>Maps</a>
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-copy"></i>Pages</a>
+                                <i class="fas fa-copy"></i>Đơn hàng</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
-                                    <a href="login.html">Login</a>
+                                    <a href="{{ route('admin.listBill', ['genaral' => 0]) }}">Danh sách đơn hiện tại</a>
                                 </li>
                                 <li>
-                                    <a href="register.html">Register</a>
+                                    <a href="{{ route('admin.listBill', ['genaral' => 1]) }}">Danh sách đơn đang
+                                        giao</a>
                                 </li>
                                 <li>
-                                    <a href="forget-pass.html">Forget Password</a>
+                                    <a href="{{ route('admin.listBill', ['genaral' => 2]) }}">Danh sách đơn đã giao</a>
                                 </li>
                             </ul>
+                        </li>
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-copy"></i>Tin Tức</a>
+                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                <li>
+                                    <a href="{{route('admin.listBlog')}}">Danh sách Blog</a>
+                                </li>
+                                <li>
+                                    <a href="{{route('admin.addBlog')}}">Thêm Blog</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+
+                            <a href="{{ route('logout') }}" onclick="event.preventDefault();
+         document.getElementById('logout-form').submit();">
+                                <svg id="icon-logout" xmlns="http://www.w3.org/2000/svg" class="text-danger" width="18"
+                                    height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                                    <polyline points="16 17 21 12 16 7"></polyline>
+                                    <line x1="21" y1="12" x2="9" y2="12">
+                                    </line>
+                                </svg>
+                                <span>
+                                    {{ __('Logout') }}
+                                </span>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </a>
+
                         </li>
 
                     </ul>
@@ -121,7 +145,7 @@
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="#">
-                <!-- <img src="users/logo.png" alt="CoolAdmin" style="width:200px" /> -->
+                    <!-- <img src="users/logo.png" alt="CoolAdmin" style="width:200px" /> -->
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
@@ -130,41 +154,42 @@
 
 
                         @if (Auth::user()->is_admin == 1)
-                            <li>
-                                <a href="{{ route('admin.home') }}">
-                                    <i class="fas fa-chart-bar"></i>Thống Kê</a>
+                        <li>
+                            <a href="{{ route('admin.home') }}">
+                                <i class="fas fa-chart-bar"></i>Thống Kê</a>
 
-                            <li>
-                            <li>
-                                <a href="{{ route('Product.list') }}">
-                                    <i class="fas fa-chart-bar"></i>Sản Phẩm</a>
+                        <li>
+                        <li>
+                            <a href="{{ route('Product.list') }}">
+                                <i class="fas fa-chart-bar"></i>Sản Phẩm</a>
 
-                            <li>
-                                <a href="{{ route('Category.list') }}">
-                                    <i class="fas fa-map-marker-alt"></i>Danh Mục</a>
-                            </li>
-                            <li class="has-sub">
-                                <a class="js-arrow" href="#">
-                                    <i class="fas fa-copy"></i>Đơn hàng</a>
-                                <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                        <li>
+                            <a href="{{ route('Category.list') }}">
+                                <i class="fas fa-map-marker-alt"></i>Danh Mục</a>
+                        </li>
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-copy"></i>Đơn hàng</a>
+                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
-                            <a href="{{ route('admin.listBill', ['genaral' => 0]) }}">Danh sách đơn hiện tại</a>
+                                    <a href="{{ route('admin.listBill', ['genaral' => 0]) }}">Danh sách đơn hiện tại</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('admin.listBill', ['genaral' => 1]) }}">Danh sách đơn đang
+                                        giao</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('admin.listBill', ['genaral' => 2]) }}">Danh sách đơn đã giao</a>
+                                </li>
+
+                            </ul>
                         </li>
                         <li>
-                            <a href="{{ route('admin.listBill', ['genaral' => 1]) }}">Danh sách đơn đang giao</a>
-                        </li>
+                            <a href="{{ route('User.list') }}">
+                                <i class="fas fa-chart-bar"></i>QL TK khách hàng hàng</a>
+
                         <li>
-                            <a href="{{ route('admin.listBill', ['genaral' => 2]) }}">Danh sách đơn đã giao</a>
-                        </li>
-
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="{{ route('User.list') }}">
-                                    <i class="fas fa-chart-bar"></i>QL TK khách hàng hàng</a>
-
-                            <li>
-                            <li class="has-sub">
+                        <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-copy"></i>Blog</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
@@ -176,31 +201,52 @@
                                 </li>
                             </ul>
                         </li>
-                            <li>
-                                <a href="{{ route('User.listNV') }}">
-                                    <i class="fas fa-chart-bar"></i>QL TK nhân viên</a>
+                        <li>
+                            <a href="{{ route('User.listNV') }}">
+                                <i class="fas fa-chart-bar"></i>QL TK nhân viên</a>
 
-                            <li>
-                            <li>
-                                <a href="{{ route('NhapXuatKho.list') }}">
-                                    <i class="fas fa-chart-bar"></i>Quản lý kho</a>
+                        <li>
+                        <li>
+                            <a href="{{ route('NhapXuatKho.list') }}">
+                                <i class="fas fa-chart-bar"></i>Quản lý kho</a>
 
-                            <li>
-                            @elseif(Auth::user()->is_admin == 2)
-                            <li>
-                                <a href="{{ route('admin.home') }}">
-                                    <i class="fas fa-chart-bar"></i>Thống Kê</a>
+                        <li>
+                        <li>
 
-                            <li>
-                            <li>
-                                <a href="{{ route('Product.list') }}">
-                                    <i class="fas fa-chart-bar"></i>Sản Phẩm</a>
+                            <a href="{{ route('logout') }}" onclick="event.preventDefault();
+document.getElementById('logout-form').submit();">
+                                <svg id="icon-logout" xmlns="http://www.w3.org/2000/svg" class="text-danger" width="18"
+                                    height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                                    <polyline points="16 17 21 12 16 7"></polyline>
+                                    <line x1="21" y1="12" x2="9" y2="12">
+                                    </line>
+                                </svg>
+                                <span>
+                                    {{ __('Logout') }}
+                                </span>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </a>
 
-                            <li>
-                                <a href="{{ route('Category.list') }}">
-                                    <i class="fas fa-map-marker-alt"></i>Danh Mục</a>
-                            </li>
-                            <li class="has-sub">
+                        </li>
+                        @elseif(Auth::user()->is_admin == 2)
+                        <li>
+                            <a href="{{ route('admin.home') }}">
+                                <i class="fas fa-chart-bar"></i>Thống Kê</a>
+
+                        <li>
+                        <li>
+                            <a href="{{ route('Product.list') }}">
+                                <i class="fas fa-chart-bar"></i>Sản Phẩm</a>
+
+                        <li>
+                            <a href="{{ route('Category.list') }}">
+                                <i class="fas fa-map-marker-alt"></i>Danh Mục</a>
+                        </li>
+                        <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-copy"></i>Blog</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
@@ -212,26 +258,27 @@
                                 </li>
                             </ul>
                         </li>
-                            <li class="has-sub">
-                                <a class="js-arrow" href="#">
-                                    <i class="fas fa-copy"></i>Đơn hàng</a>
-                                <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-copy"></i>Đơn hàng</a>
+                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
-                            <a href="{{ route('admin.listBill', ['genaral' => 0]) }}">Danh sách đơn hiện tại</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('admin.listBill', ['genaral' => 1]) }}">Danh sách đơn đang giao</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('admin.listBill', ['genaral' => 2]) }}">Danh sách đơn đã giao</a>
-                        </li>
+                                    <a href="{{ route('admin.listBill', ['genaral' => 0]) }}">Danh sách đơn hiện tại</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('admin.listBill', ['genaral' => 1]) }}">Danh sách đơn đang
+                                        giao</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('admin.listBill', ['genaral' => 2]) }}">Danh sách đơn đã giao</a>
+                                </li>
 
-                                </ul>
-                            </li>
+                            </ul>
+                        </li>
                         @endif
 
 
-                      
+
                     </ul>
                 </nav>
             </div>
@@ -241,54 +288,7 @@
         <!-- PAGE CONTAINER-->
         <div class="page-container">
             <!-- HEADER DESKTOP-->
-            <header class="header-desktop">
-                <div class="section__content section__content--p30">
-                    <div class="container-fluid">
-                        <div class="header-wrap">
-                           
-                            <div class="header-button">
-                                <div class="noti-wrap">
-                                    
-                                   
-                                    
-                                </div>
-                                <div style="margin-left:1400px">
 
-                                    
-                                <li >
-
-<a href="{{ route('logout') }}"
-    onclick="event.preventDefault();
-         document.getElementById('logout-form').submit();">
-    <svg id="icon-logout" xmlns="http://www.w3.org/2000/svg"
-        class="text-danger" width="18" height="18"
-        viewbox="0 0 24 24" fill="none" stroke="currentColor"
-        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-        <polyline points="16 17 21 12 16 7"></polyline>
-        <line x1="21" y1="12" x2="9" y2="12">
-        </line>
-    </svg>
-    <span>
-        {{ __('Logout') }}
-    </span>
-    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-        class="d-none">
-        @csrf
-    </form>
-</a>
-
-</li>  
-                                  
-
-
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </header>
             @yield('content')
         </div>
 
@@ -314,19 +314,19 @@
     <!-- Main JS-->
     <script src="admin/js/main.js"></script>
     <script>
-        $('.btnAddImage').click(function() {
-            let count = $('.image_count').length + 1;
-            let imageHTML = '<div class="row form-group image_count">' +
-                '<div class="col col-md-3">' +
-                '<label for="text-input" class=" form-control-label">Ảnh ' + count + '</label>' +
-                ' </div>' +
-                '<div class="col-12 col-md-9">' +
-                '<input type="file" id="text-input" name="image[]" placeholder="Nhập"' +
-                'class="form-control">' +
-                '</div>' +
-                '</div>';
-            $('.image_here').append(imageHTML);
-        });
+    $('.btnAddImage').click(function() {
+        let count = $('.image_count').length + 1;
+        let imageHTML = '<div class="row form-group image_count">' +
+            '<div class="col col-md-3">' +
+            '<label for="text-input" class=" form-control-label">Ảnh ' + count + '</label>' +
+            ' </div>' +
+            '<div class="col-12 col-md-9">' +
+            '<input type="file" id="text-input" name="image[]" placeholder="Nhập"' +
+            'class="form-control">' +
+            '</div>' +
+            '</div>';
+        $('.image_here').append(imageHTML);
+    });
     </script>
 </body>
 

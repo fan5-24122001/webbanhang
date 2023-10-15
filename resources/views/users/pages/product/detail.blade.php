@@ -49,9 +49,43 @@
                             @if($data->amount > 0)
                             @guest
                             @if (Route::has('login'))
+                            <form action="{{ route('login') }}" method="post">
+                                {{ csrf_field() }}
+                                <div class="product__details__widget">
+                                    <ul>
+
+                                        <li>
+                                            <span>Available color:</span>
+                                            <div class="color__checkbox">
+                                                @foreach (explode(',', $data->size) as $size)
+                                                <div class="form-check">
+                                                    <input type="radio" id="size-{{ $size }}" name="size"
+                                                        value="{{ $size }}" class="form-check-input">
+                                                    <label for="size-{{ $size }}"
+                                                        class="form-check-label">{{ $size }}</label>
+                                                </div>
+                                                @endforeach
+                                            </div>
+
+                                        </li><br>
+                                        <li>
+                                            <span>Available color:</span>
+                                            <div class="color__checkbox">
+                                                @foreach (explode(',', $data->color) as $color)
+                                                <div class="form-check">
+                                                    <input type="radio" id="color-{{ $color }}" name="color"
+                                                        value="{{ $color }}" class="form-check-input">
+                                                    <label for="color-{{ $color }}"
+                                                        class="form-check-label">{{ $color }}</label>
+                                                </div>
+                                                @endforeach
+                                            </div>
+                                        </li><br>
+
+                                    </ul>
+                                </div>
                             <a style="background:#DE591C" href="{{ route('login') }}" class="cart-btn"><span
-                                    class="fa fa-shopping-cart"></span> Thêm Vào Giỏ Hàng</a> <a href="{{ route('login')
-                                                                        }}? class=" cart-btn"><span
+                                    class="fa fa-shopping-cart"></span> Thêm Vào Giỏ Hàng</a> <a href="{{ route('login')}}" class=" cart-btn"><span
                                     class="icon_heart_alt"></span> Yêu Thích</a> @endif
                             @else
                             @if (Auth::user()->is_admin==0)
@@ -120,9 +154,11 @@
                         <div class="product__details__widget">
                             <ul>
 
-                                ?li?
+                                <li>
                                 <span>Promotions:</span>
                                 <p>Free shipping</p>
+                                </li>
+                                
                                 </li>
                             </ul>
                         </div>
