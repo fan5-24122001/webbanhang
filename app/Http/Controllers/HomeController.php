@@ -80,25 +80,27 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     //trang admin
-    public function adminHome()
-    {
-        $this->middleware('auth');
-        $pro = Product::all()->count();
-        ;
-        $cate = Category::all()->count();
-        ;
-        $user = User::where('is_admin', '=', 0)->count();
-        $nv = User::where('is_admin', '=', 2)->count();
-        ;
-        $qln = NhapXuatKho::where('type', '=', 1)->count();
-        ;
-        $qlx = NhapXuatKho::where('type', '=', 2)->count();
-        ;
-        $bill1 = Bill::where('genaral', '=', 0)->count();
-        $bill2 = Bill::where('genaral', '=', 1)->count();
-        $bill3 = Bill::where('genaral', '=', 2)->count();
-        return view('admin.home', compact(['pro', 'cate', 'user', 'nv', 'qln', 'qlx', 'bill1', 'bill2', 'bill3']));
-    }
+        public function adminHome()
+        {
+            $this->middleware('auth');
+            $pro = Product::all()->count();
+            ;
+            $cate = Category::all()->count();
+            ;
+            $user = User::where('is_admin', '=', 0)->count();
+            $nv = User::where('is_admin', '=', 2)->count();
+            ;
+            $qln = NhapXuatKho::where('type', '=', 1)->count();
+            ;
+            $qlx = NhapXuatKho::where('type', '=', 2)->count();
+            ;
+            $bill1 = Bill::where('genaral', '=', 0)->count();
+            $bill2 = Bill::where('genaral', '=', 1)->count();
+            $bill3 = Bill::where('genaral', '=', 2)->count();
+            $billtt = Bill::where('genaral', '=', 2)->sum('price');
+            
+            return view('admin.home', compact(['pro', 'cate', 'user', 'nv', 'qln', 'qlx', 'bill1', 'bill2', 'bill3','billtt']));
+        }
 
     public function addcart($idUser, $idProduct)
     {
@@ -319,6 +321,12 @@ class HomeController extends Controller
                 $pro = Product::find($car->idProduct);
                 $car->genaral = 2;
                 $car->save();
+                $prott = $pro->amount - $car->amount;
+                // Update the 'amount' attribute of the Product model
+                $pro->amount = $prott;
+                $pro->save();
+                
+
             }
             return redirect()->route('home')->with('success', 'Đặt thành công.');
         }

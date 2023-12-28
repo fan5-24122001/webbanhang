@@ -138,10 +138,62 @@
                             <div class="image_here">
                                 <div class="row form-group image_count">
                                     <div class="col col-md-3">
-                                        <label for="text-input" class=" form-control-label">Ảnh 1</label>
+                                        <label for="text-input" class=" form-control-label">Ảnh </label>
                                     </div>
                                     <div class="col-12 col-md-9">
                                         <input type="file" id="text-input" name="image[]" placeholder="Nhập"
+                                            class="form-control">
+                                        @error('name')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                      
+                        <div class="col">
+                            <div class="image_here">
+                                <div class="row form-group image_count">
+                                    <div class="col col-md-3">
+                                        <label for="text-input" class=" form-control-label">Ảnh 1</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="file" id="text-input" name="image1[]" multiple placeholder="Nhập"
+                                            class="form-control">
+                                        @error('name')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col">
+                            <div class="image_here">
+                                <div class="row form-group image_count">
+                                    <div class="col col-md-3">
+                                        <label for="text-input" class=" form-control-label">Ảnh 2</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="file" id="text-input" name="image2[]"  multiple placeholder="Nhập"
+                                            class="form-control">
+                                        @error('name')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col">
+                            <div class="image_here">
+                                <div class="row form-group image_count">
+                                    <div class="col col-md-3">
+                                        <label for="text-input" class=" form-control-label">Ảnh 3</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="file" id="text-input" name="image3[]" multiple placeholder="Nhập"
                                             class="form-control">
                                         @error('name')
                                         <div class="alert alert-danger">{{ $message }}</div>

@@ -149,6 +149,24 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="overview-item overview-item--c4">
+                            <div class="overview__inner">
+                                <div class="overview-box clearfix">
+                                <div class="icon">
+                                        <i class="zmdi zmdi-money"></i>
+                                    </div>
+                                    <div class="text" style="font-size: 15px;">
+                                        <h2 style="font-size: 25px;">{{number_format($billtt ,0)}} VND total Price buy</h2>
+                                        
+                                    </div>
+                                </div>
+                                <div class="overview-chart">
+                                    <canvas id="widgetChart4"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

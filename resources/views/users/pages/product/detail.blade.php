@@ -18,23 +18,26 @@
 <section class="product-details spad">
     <div class="container">
         <div class="row">
-            <div class="col-lg-6">
-                <div class="product__details__pic">
-                    <div class="product__details__pic__left product__thumb
-                    nice-scroll"> <a class="pt active" href="#product-1"> <img src="{{$data ->image}}" alt=""> </a>
-                    </div>
-                    <div class="product__details__slider__content">
-                        <div class="product__details__pic__slider owl-carousel"> <img data-hash="product-1"
-                                class=?product__big__img? src="{{$data ->image}}" alt=""> <img data-hash="product-2"
-                                class=?product__big__img? src="{{$data ->image}}>
-                                alt=??? ?img data-hash=" product-3? class=?product__big__img"
-                                src="img/product/details/product-2.jpg" alt="">
-                            <img data-hash="product-4" class="product__big__img" src="img/product/details/product-4.jpg"
-                                alt="">
-                        </div>
-                    </div>
-                </div>
+        <div class="col-lg-6">
+    <div class="product__details__pic">
+        <div class="product__details__pic__left product__thumb nice-scroll">
+            <a class="pt active" href="#product-1"> <img src="{{ asset($data->image) }}" alt=""> </a>
+            <a class="pt active" href="#product-2"> <img src="{{ asset($data->image1) }}" alt=""> </a>
+            <a class="pt active" href="#product-3"> <img src="{{ asset($data->image2) }}" alt=""> </a>
+            <a class="pt active" href="#product-4"> <img src="{{ asset($data->image3) }}" alt=""> </a>
+        </div>
+        
+        <div class="product__details__slider__content">
+            <div class="product__details__pic__slider owl-carousel">
+            <img data-hash="product-1" class="product__big__img" src="{{ asset($data->image) }}" alt="">
+            <img data-hash="product-2" class="product__big__img" src="{{ asset($data->image1) }}" alt="">
+            <img data-hash="product-3" class="product__big__img" src="{{ asset($data->image2) }}" alt="">
+            <img data-hash="product-4" class="product__big__img" src="{{ asset($data->image3) }}" alt="">
             </div>
+            </div>
+            </div>
+            </div>
+
             <div class="col-lg-6">
                 <div class="product__details__text">
                     <h3>{{$data->name}}<span></span></h3>

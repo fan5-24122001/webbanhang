@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
 {
@@ -47,6 +48,45 @@ class ProductController extends Controller
         $product->price = $request->price;
         $product->size = implode(',', $request->input('size', [])); // Assuming 'size' is an array in your form
         $product->color = implode(',', $request->input('color', [])); // Assuming 'color' is an array in your form
+        if ($request->hasFile('image1')) {
+            $uploadedImages = [];
+
+            foreach ($request->file('image1') as $index => $image) {
+                $extension = $image->getClientOriginalExtension();
+                $uploadname = 'image1_' . md5(uniqid()) . '_' . $index . '.' . $extension;
+                $image->move(public_path() . '/uploads/', $uploadname);
+                $uploadedImages[] = 'uploads/' . $uploadname;
+            }
+
+            $product->image1 = implode(',', $uploadedImages);
+        }
+
+        if ($request->hasFile('image2')) {
+            $uploadedImagess = [];
+
+            foreach ($request->file('image2') as $index => $image) {
+                $extension = $image->getClientOriginalExtension();
+                $uploadname = 'image2_' . md5(uniqid()) . '_' . $index . '.' . $extension;
+                $image->move(public_path() . '/uploads/', $uploadname);
+                $uploadedImagess[] = 'uploads/' . $uploadname;
+            }
+
+            $product->image2 = implode(',', $uploadedImagess);
+        }
+
+        if ($request->hasFile('image3')) {
+            $uploadedImagesss = [];
+
+            foreach ($request->file('image3') as $index => $image) {
+                $extension = $image->getClientOriginalExtension();
+                $uploadname = 'image3_' . md5(uniqid()) . '_' . $index . '.' . $extension;
+                $image->move(public_path() . '/uploads/', $uploadname);
+                $uploadedImagesss[] = 'uploads/' . $uploadname;
+            }
+
+            $product->image3 = implode(',', $uploadedImagesss);
+        }
+
 
         if (!empty($arrayImgae)) {
             $product->image = substr_replace($arrayImgae, "", -1);
@@ -98,6 +138,44 @@ class ProductController extends Controller
                 }
             }
         }
+        if ($request->hasFile('image1')) {
+            $uploadedImages = [];
+
+            foreach ($request->file('image1') as $index => $image) {
+                $extension = $image->getClientOriginalExtension();
+                $uploadname = 'image1_' . md5(uniqid()) . '_' . $index . '.' . $extension;
+                $image->move(public_path() . '/uploads/', $uploadname);
+                $uploadedImages[] = 'uploads/' . $uploadname;
+            }
+
+            $product->image1 = implode(',', $uploadedImages);
+        }
+
+        if ($request->hasFile('image2')) {
+            $uploadedImagess = [];
+
+            foreach ($request->file('image2') as $index => $image) {
+                $extension = $image->getClientOriginalExtension();
+                $uploadname = 'image2_' . md5(uniqid()) . '_' . $index . '.' . $extension;
+                $image->move(public_path() . '/uploads/', $uploadname);
+                $uploadedImagess[] = 'uploads/' . $uploadname;
+            }
+
+            $product->image2 = implode(',', $uploadedImagess);
+        }
+
+        if ($request->hasFile('image3')) {
+            $uploadedImagesss = [];
+
+            foreach ($request->file('image3') as $index => $image) {
+                $extension = $image->getClientOriginalExtension();
+                $uploadname = 'image3_' . md5(uniqid()) . '_' . $index . '.' . $extension;
+                $image->move(public_path() . '/uploads/', $uploadname);
+                $uploadedImagesss[] = 'uploads/' . $uploadname;
+            }
+
+            $product->image3 = implode(',', $uploadedImagesss);
+        }
 
         $product->save();
         return redirect()->route('Product.list')->with('success', 'Sửa thành công');
@@ -110,5 +188,18 @@ class ProductController extends Controller
         $image->move(public_path() . '/uploads/', $uploadname);
 
         return 'uploads/' . $uploadname;
+    }
+    public function storeImage($file)
+    {
+        $extension = $file->getClientOriginalExtension(); // Lấy phần mở rộng của tệp
+
+        // Tạo tên tệp mới dựa trên thời gian và phần mở rộng của tệp
+        $fileName = time() . '_' . uniqid() . '.' . $extension;
+
+        // Di chuyển tệp vào thư mục cụ thể (ví dụ: public/image)
+        $file->move(public_path('image'), $fileName);
+
+        // Tạo đường dẫn URL hoàn chỉnh và trả về
+        return asset('image/' . $fileName);
     }
 }

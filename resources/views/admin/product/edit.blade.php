@@ -141,12 +141,79 @@
                                     </div>
                                     @endforeach
                                 </div>
-                                <div class="row form-group">
-                                    <button type="button" class="btn btn-primary btn-sm btnAddImage">
-                                        <i class="fa fa-dot-circle-o"></i> Thêm ảnh
-                                    </button>
+                            </div>
+                            <div class="col">
+                            <div class="image_here">
+                                <div class="row form-group image_count">
+                                    <div class="col col-md-3">
+                                        <label for="text-input" class=" form-control-label">Ảnh 1</label>
+                                    </div>
+                                    <div class="col-12 col-md-5">
+                                    @if($product->image1)
+                    @foreach(explode(',', $product->image1) as $imagePath)
+                        <img src="{{ asset($imagePath) }}" alt="">
+                    @endforeach
+                    @endif
+                                        </div>
+                                    <div class="col-12 col-md-4">
+                                        <input type="file" id="text-input" name="image1[]" multiple placeholder="Nhập"
+                                            class="form-control">
+                                        @error('name')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
+
+                        </div>
+                        <div class="col">
+                            <div class="image_here">
+                                <div class="row form-group image_count">
+                                    <div class="col col-md-3">
+                                        <label for="text-input" class=" form-control-label">Ảnh 2</label>
+                                    </div>
+                                    <div class="col-12 col-md-5">
+                                    @if($product->image2)
+                    @foreach(explode(',', $product->image2) as $imagePath)
+                        <img src="{{ asset($imagePath) }}" alt="">
+                    @endforeach
+                    @endif
+                                        </div>
+                                    <div class="col-12 col-md-4">
+                                        <input type="file" id="text-input" name="image2[]"  multiple placeholder="Nhập"
+                                            class="form-control">
+                                        @error('name')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col">
+                            <div class="image_here">
+                                <div class="row form-group image_count">
+                                    <div class="col col-md-3">
+                                        <label for="text-input" class=" form-control-label">Ảnh 3</label>
+                                    </div>
+                                    <div class="col-12 col-md-5">
+                                    @if($product->image3)
+                    @foreach(explode(',', $product->image3) as $imagePath)
+                        <img src="{{ asset($imagePath) }}" alt="">
+                    @endforeach
+                    @endif
+                                        </div>
+                                    <div class="col-12 col-md-4">
+                                        <input type="file" id="text-input" name="image3[]" multiple placeholder="Nhập"
+                                            class="form-control">
+                                        @error('name')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary btn-sm">
                                     <i class="fa fa-dot-circle-o"></i> Cập nhật
